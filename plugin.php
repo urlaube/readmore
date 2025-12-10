@@ -8,7 +8,7 @@
     getting too long.
 
     @package urlaube\readmore
-    @version 0.1a0
+    @version 0.1a1
     @author  Yahe <hello@yahe.sh>
     @since   0.1a0
   */
@@ -26,16 +26,16 @@
       $result = $content;
 
       if (is_string($result)) {
-        // generate form source code
-        $link = tfhtml(NL.
-                       "<p><a href=\"%s\"><strong>%s</strong></a></p>".NL,
-                       ReadMore::class,
-                       $uri,
-                       "Mehr lesen &raquo;");
-
         if ((ErrorHandler::class !== Handlers::getActive()) &&
             (FeedHandler::class !== Handlers::getActive()) &&
             (PageHandler::class !== Handlers::getActive())) {
+          // generate form source code
+          $link = tfhtml(NL.
+                         "<p><a href=\"%s\"><strong>%s</strong></a></p>".NL,
+                         ReadMore::class,
+                         $uri,
+                         "Mehr lesen &raquo;");
+
           $pos = stripos($result, "[readmore]");
           if (false !== $pos) {
             $result  = substr($result, 0, $pos);
